@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nest API Demo</title>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+var c=0
+var t
+function timedCount()
+{
+document.getElementById('ncnt').value=c
+c=c+1
+        $.get("/get_nest",function(ret){
+            $('#result').html(ret)
+        })
+t=setTimeout("timedCount()",3000)
+}
+</script>
+</head>
+<body>
+Welcome to AlphaNodus Nest Controller!<br>
+{{string}}
+
+<form>
+<input type="button" id = "update" value="Start Polling！" onClick="timedCount()">
+<input type="text" id="ncnt">
+</form>
+
+
+
+<p>Click the button above will get the Thermostat Data</p>
+<p>Humindity: <span id='result'></span></p>
+
+
+
+<p>请输入两个数字</p>
+<form action="/add/" method="get">
+    a: <input type="text" id="a" name="a"> <br>
+    b: <input type="text" id="b" name="b"> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum' onClick = "update_hud">提交</button>
+</form>
+ 
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+function update_hud(){
+    $(document).ready(function(){
+      $("#sum").click(function(){
+        var a = $("#a").val();
+        var b = $("#b").val();
+        $.get("/get_nest",function(ret){
+            $('#result').html(ret)
+        })
+      });
+    });
+}
+</script>
+</body>
+</html>

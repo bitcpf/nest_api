@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nest API Demo</title>
+<script type="text/javascript">
+var c=0
+var t
+function timedCount()
+{
+document.getElementById('txt').value=c
+c=c+1
+t=setTimeout("timedCount()",500)
+}
+</script>
+</head>
+<body>
+Welcome to AlphaNodus Nest Controller!<br>
+{{string}}
+
+<form>
+<input type="button" value="开始计时！" onClick="timedCount()">
+<input type="text" id="txt">
+</form>
+
+<p>请点击上面的按钮。输入框会从 0 开始一直进行计时。</p>
+
+
+
+
+
+
+<p>请输入两个数字</p>
+<form action="/add/" method="get">
+    a: <input type="text" id="a" name="a"> <br>
+    b: <input type="text" id="b" name="b"> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum'>提交</button>
+</form>
+ 
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $("#sum").click(function(){
+        var a = $("#a").val();
+        var b = $("#b").val();
+ 
+        $.get("/add/",{'a':a,'b':b}, function(ret){
+            $('#result').html(ret)
+        })
+      });
+    });
+</script>
+</body>
+</html>
